@@ -9,14 +9,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("web")
 public class WebConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
+
     public WebConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
+
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -26,6 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
         templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
+
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -33,6 +37,7 @@ public class WebConfig implements WebMvcConfigurer {
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
